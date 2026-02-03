@@ -1,15 +1,3 @@
-const starsContainer = document.getElementById("stars");
-
-for (let i = 0; i < 120; i++) {
-  const star = document.createElement("div");
-  star.className = "star";
-  star.style.top = Math.random() * 100 + "%";
-  star.style.left = Math.random() * 100 + "%";
-  star.style.animationDelay = Math.random() * 2 + "s";
-  starsContainer.appendChild(star);
-}
-
-
 const music = document.getElementById("music");
 const title = document.getElementById("title");
 const text = document.getElementById("text");
