@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>For You ❤️</title>
+  <title>For Shivani ❤️</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<audio autoplay loop>
+<audio id="music" loop>
   <source src="music.mp3" type="audio/mp3">
 </audio>
 
-<div class="container">
-  <h1>Hey ❤️</h1>
-  <h2>Will you be my Valentine? 🌹</h2>
+<div class="container" id="stage">
+  <h1 id="title">Shivani ❤️</h1>
+  <p id="text">Tap once… I made this just for you 💕</p>
 
-  <div class="buttons">
+  <button id="next">Continue 💌</button>
+
+  <div id="timeline" class="hidden"></div>
+
+  <div class="buttons hidden">
     <button id="yes">YES 💖</button>
     <button id="no">NO 💔</button>
   </div>
-
-  <p id="message"></p>
 </div>
 
-<div class="hearts"></div>
+<canvas id="confetti"></canvas>
 
 <script src="script.js"></script>
 </body>
