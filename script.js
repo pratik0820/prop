@@ -51,7 +51,31 @@ noBtn.addEventListener("mouseover", () => {
   noBtn.style.position = "absolute";
   noBtn.style.left = Math.random() * 80 + "%";
   noBtn.style.top = Math.random() * 80 + "%";
+
+  noBtn.style.pointerEvents = "none";
+  setTimeout(() => {
+    noBtn.style.pointerEvents = "auto";
+  }, 300);
 });
+
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * 80 + "%";
+  noBtn.style.top = Math.random() * 80 + "%";
+
+  noBtn.style.pointerEvents = "none";
+  setTimeout(() => {
+    noBtn.style.pointerEvents = "auto";
+  }, 300);
+});
+
+noBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+});
+
 
 yesBtn.addEventListener("click", () => {
     launchFireworks();

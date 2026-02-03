@@ -1,37 +1,64 @@
+/* RESET + BASE */
 body {
   margin: 0;
   height: 100vh;
-  background: 
-    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-    url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
+  position: relative;
 }
 
-
-@keyframes candleGlow {
-  from { filter: brightness(1); }
-  to { filter: brightness(1.1); }
+/* 🌌 GALAXY BACKGROUND (WORKS ON MOBILE + DESKTOP) */
+body::before {
+  content: "";
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  animation: galaxyMove 80s linear infinite alternate;
+  will-change: transform;
 }
 
+/* Galaxy drift animation */
+@keyframes galaxyMove {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-60px) scale(1.05);
+  }
+}
+
+/* Slightly slower movement on mobile */
+@media (max-width: 768px) {
+  body::before {
+    animation-duration: 120s;
+  }
+}
+
+/* 🌟 MAIN CARD */
 .container {
   backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.9);;
+  background: rgba(255, 255, 255, 0.9);
   padding: 35px;
   border-radius: 20px;
   text-align: center;
   max-width: 350px;
-  box-shadow: 
+  box-shadow:
     0 0 30px rgba(255, 105, 135, 0.6),
     0 0 80px rgba(255, 105, 135, 0.4);
 }
 
+/* TEXT */
 h1 {
   color: #ff4d6d;
 }
@@ -41,6 +68,7 @@ h1 {
   margin: 15px 0;
 }
 
+/* BUTTONS */
 button {
   padding: 12px 20px;
   margin-top: 15px;
@@ -68,10 +96,12 @@ button {
   background: #ddd;
 }
 
+/* UTIL */
 .hidden {
   display: none;
 }
 
+/* TIMELINE */
 #timeline {
   text-align: left;
   margin-top: 15px;
@@ -82,6 +112,7 @@ button {
   margin: 6px 0;
 }
 
+/* 🎆 CONFETTI CANVAS */
 canvas {
   position: fixed;
   top: 0;
@@ -90,6 +121,7 @@ canvas {
   pointer-events: none;
 }
 
+/* 💍 RING DROP */
 .ring {
   font-size: 60px;
   position: fixed;
@@ -106,6 +138,7 @@ canvas {
   }
 }
 
+/* 💌 SECRET MESSAGE */
 .secret {
   opacity: 0;
   font-size: 18px;
@@ -116,14 +149,7 @@ canvas {
 }
 
 @keyframes reveal {
-  to { opacity: 1; }
-}
-
-@keyframes spaceMove {
-  from { background-position: center; }
-  to { background-position: top; }
-}
-
-body {
-  animation: spaceMove 60s linear infinite alternate;
+  to {
+    opacity: 1;
+  }
 }
