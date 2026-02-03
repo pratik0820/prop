@@ -1,3 +1,15 @@
+const starsContainer = document.getElementById("stars");
+
+for (let i = 0; i < 120; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.animationDelay = Math.random() * 2 + "s";
+  starsContainer.appendChild(star);
+}
+
+
 const music = document.getElementById("music");
 const title = document.getElementById("title");
 const text = document.getElementById("text");
@@ -54,7 +66,15 @@ noBtn.addEventListener("mouseover", () => {
 });
 
 yesBtn.addEventListener("click", () => {
-  document.body.innerHTML = `
+    launchFireworks();
+
+    const ring = document.createElement("div");
+  ring.className = "ring";
+  ring.innerHTML = "💍";
+  document.body.appendChild(ring);
+
+    setTimeout(() => {
+        document.body.innerHTML = `
     <h1 style="color:white;text-align:center;padding:40px;">
       I knew it, Bubu 😍❤️<br><br>
       From best friends to lovers…<br>
@@ -62,5 +82,65 @@ yesBtn.addEventListener("click", () => {
       Take a screenshot 📸<br>
       This moment is ours 🤍
     </h1>
+    <p class="secret">
+        Even after all the ups and downs…<br>
+        choosing you was always easy 🤍
+      </p>
   `;
+}, 3000);
 });
+  
+function launchFireworks() {
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  function createFirework(x, y) {
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x,
+        y,
+        vx: Math.cos(i) * Math.random() * 6,
+        vy: Math.sin(i) * Math.random() * 6,
+        alpha: 1,
+        size: Math.random() * 4 + 2
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, index) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= 0.01;
+
+      ctx.fillStyle = `rgba(255, 77, 109, ${p.alpha})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (p.alpha <= 0) particles.splice(index, 1);
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Launch multiple fireworks
+  let launches = 0;
+  const interval = setInterval(() => {
+    createFirework(
+      Math.random() * canvas.width,
+      Math.random() * canvas.height / 2
+    );
+    launches++;
+    if (launches > 6) clearInterval(interval);
+  }, 500);
+}
