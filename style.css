@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+h1 { color: #ff4d6d; }
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background: #ddd;
+}
+
+.hearts::before {
+  content: "💖 💘 💝 💞 💓";
+  position: absolute;
+  animation: float 6s infinite linear;
+}
+
+@keyframes float {
+  from { top: 100%; }
+  to { top: -10%; }
+}
